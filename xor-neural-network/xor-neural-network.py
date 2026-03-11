@@ -43,16 +43,13 @@ for epoch in range(4000):            # ağı 10000 kez eğitiyoruz her döngü 1
     final_input = np.dot(hidden_output,W2) + b2  # çıkış nöronuna veri gönderilir
     final_output = sigmoid(final_input)          # modelin tahmini
 
-    # Hata
     error = y - final_output                     # hata payı hesaplama
 
-    # Backprop
     d_output = error * sigmoid_derivative(final_output)
 
     error_hidden = d_output.dot(W2.T)
     d_hidden = error_hidden * sigmoid_derivative(hidden_output)
 
-    # Ağı güncelle
     W2 += hidden_output.T.dot(d_output) * learning_rate
     b2 += np.sum(d_output, axis=0, keepdims=True) * learning_rate
 
@@ -60,3 +57,4 @@ for epoch in range(4000):            # ağı 10000 kez eğitiyoruz her döngü 1
     b1 += np.sum(d_hidden, axis=0, keepdims=True) * learning_rate
 
     print(final_output)
+

@@ -1,98 +1,88 @@
-"""
-Ağı 100 kez eğittiğimizde çıktı: [[0.49466996]
-                                  [0.50305173]
-                                  [0.50335617]
-                                  [0.51008834]]
+# Neural Network from Scratch with NumPy
 
-Ağı 1000 kez eğittiğimizde çıktı: [[0.47709913]
-                                   [0.50469944]
-                                   [0.50943575]
-                                   [0.52600513]]
+This project implements a simple neural network **from scratch using only NumPy** to solve the classic **XOR problem**.
 
-Ağı 10000 kez eğittiğimizde çıktı: [[0.05587752]
-                                    [0.94888694]
-                                    [0.94881863]
-                                    [0.05495454]]
+The goal of this project is to understand the fundamental mechanics of neural networks without using high-level frameworks.
 
-Ağı 100000 kez eğittiğimizde çıktı: [[0.01298684]
-                                     [0.98890291]
-                                     [0.98889676]
-                                     [0.01141451]]
+## Concepts Implemented
 
-"""
-"""
-Biz modele şu dört girdiyi veriyoruz:
+* Forward Propagation
+* Backpropagation
+* Gradient Descent
+* Sigmoid Activation Function
+* Matrix Operations using NumPy
 
-[0,0]
-[0,1]
-[1,0]
-[1,1]
+These are the core ideas behind modern deep learning systems.
 
-Yani örneğin:
+## Architecture
 
-input = [0,1] Bu iki özellikli bir veri.
+Neural Network Structure:
 
-Peki 0.55 gibi sayı nasıl çıkıyor?
+Input Layer: 2 neurons
+Hidden Layer: 2 neurons
+Output Layer: 1 neuron
 
-Çünkü model doğrudan 0 veya 1 üretmez. Önce bir olasılık değeri üretir.
+```
+Input (2)
+   ↓
+Hidden Layer (2)
+   ↓
+Output (1)
+```
 
-Mesela model hesaplıyor:
+## Dataset
 
-output = 0.55 Bu şu anlama gelir:
+The model learns the XOR logic gate:
 
-%55 ihtimalle 1  %45 ihtimalle 0, Yani model emin değil.
+| x1 | x2 | Output |
+| -- | -- | ------ |
+| 0  | 0  | 0      |
+| 0  | 1  | 1      |
+| 1  | 0  | 1      |
+| 1  | 1  | 0      |
 
-Bu sayı nereden geliyor? Sinir ağı aslında şu işlemi yapıyor:
+## Example Output
 
-input × ağırlık + bias  Sonra bunu sigmoid fonksiyonundan geçiriyoruz.
+After training:
 
-Sigmoid fonksiyonu:
+```
+[[0.02]
+ [0.97]
+ [0.96]
+ [0.03]]
+```
 
-sigmoid(x) = 1 / (1 + e^-x)  Bu fonksiyonun özelliği: çıktı her zaman 0 ile 1 arasındadır 
-Örnek:
+The model successfully learns the XOR pattern.
 
-giriş	sigmoid çıkışı
--3	0.047
-0	0.5
-3	0.95
-Küçük bir örnek yapalım
+## Requirements
 
-Diyelim input: [0,1]
+* Python 3
+* NumPy
 
-Ağırlıklar:[0.4, 0.7]
+Install dependencies:
 
-İşlem: 0×0.4 + 1×0.7 = 0.7
+```
+pip install numpy
+```
 
-Sigmoid:  sigmoid(0.7) ≈ 0.66
+## Run the Project
 
-Modelin çıktısı: 0.66
+```
+python nn.py
+```
 
-Yani model diyor ki: %66 ihtimalle sonuç = 1
+## Purpose
 
-Eğitimden sonra ne olur? 
+This project is built for educational purposes to understand how neural networks work internally before using frameworks like PyTorch or TensorFlow.
 
-Başta tahminler şöyle olabilir:
+## Technologies Used
 
-0.52
-0.55
-0.48
-0.50
+* Python
+* NumPy
 
-Ama eğitimden sonra:
+## Future Improvements
 
-0.02
-0.97
-0.96
-0.03
-
-Yani model artık çok daha emin.
-
-Kısaca olay
-
-Input: [0,1]
-
-Model içinde olanlar: çarpma + toplama + sigmoid
-
-Output: 0.55 (olasılık)
-
-"""
+* Add loss visualization
+* Implement more activation functions
+* Train on larger datasets
+* Build a modular neural network class
